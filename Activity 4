@@ -11,6 +11,10 @@ v0 = 2; % Constant flow rate in L/s
 C_A0 = F_A0 / v0; % Inlet concentration in mol/L
 C_A = F_A / v0; % Outlet concentration in mol/L
 
+
+
+
+
 % Calculate the volume of the PFR
 if n == 1
     % First-order reaction: V = (1/k) * ln(C_A0/C_A) * v0
@@ -19,6 +23,10 @@ elseif n == 2
     % Second-order reaction: V = (1/k) * ((1/C_A) - (1/C_A0)) * v0
     V = (v0 / k) * ((1 / C_A) - (1 / C_A0));
 end
+
+
+
+
 
 
 % Function to verify student input
