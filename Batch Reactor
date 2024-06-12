@@ -1,0 +1,63 @@
+% Generate random values
+C_A0 = 5 + (10-5) * rand(); % Random value for Ca0 between [5,10] mol/L
+k_values = [1, 2, 3, 4, 5];
+k = k_values(randi(length(k_values))); % Random value for rate constant k from {1,2,3,4,5} (mol/L)^(1-n) s^-1
+n_values = [1, 2, 3];
+n = n_values(randi(length(n_values))); % Random value for reaction order n from {1,2,3}
+
+% Time points
+times = [5, 10, 15]; % in seconds
+
+% Initialize concentration array
+C_A = zeros(1, length(times));
+
+% Calculate concentration for each time point based on the reaction order
+for i = 1:length(times)
+    t = times(i);
+    if n == 1
+        % First order reaction
+        C_A(i) = C_A0 * exp(-k * t);
+    elseif n == 2
+        % Second order reaction
+        C_A(i) = C_A0 / (1 + k * C_A0 * t);
+    elseif n == 3
+        % Third order reaction
+        C_A(i) = C_A0 / sqrt(1 + 2 * k * C_A0^2 * t);
+    end
+end
+
+
+% Function to verify student input
+function verify_student_input(student_answers)
+    % Randomly generated values
+    C_A0 = 5 + (10-5) * rand();
+    k_values = [1, 2, 3, 4, 5];
+    k = k_values(randi(length(k_values)));
+    n_values = [1, 2, 3];
+    n = n_values(randi(length(n_values)));
+
+    % Time points
+    times = [5, 10, 15];
+
+    % Calculate correct concentrations
+    C_A_correct = zeros(1, length(times));
+    for i = 1:length(times)
+        t = times(i);
+        if n == 1
+            C_A_correct(i) = C_A0 * exp(-k * t);
+        elseif n == 2
+            C_A_correct(i) = C_A0 / (1 + k * C_A0 * t);
+        elseif n == 3
+            C_A_correct(i) = C_A0 / sqrt(1 + 2 * k * C_A0^2 * t);
+        end
+    end
+
+    % Compare student answers to correct values
+    for i = 1:length(times)
+        if abs(student_answers(i) - C_A_correct(i)) < 1e-2
+            fprintf('Student answer for t = %d s is correct.\n', times(i));
+        else
+            fprintf('Student answer for t = %d s is incorrect. Correct value is %.4f mol/L\n', times(i), C_A_correct(i));
+        end
+    end
+end
