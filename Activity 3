@@ -1,0 +1,54 @@
+% Generate random values
+F_A0 = 5 + (10-5) * rand(); % Random value for Fa0 between [5,10] mol/s
+F_A = 1 + (4-1) * rand(); % Random value for Fa between [1,4] mol/s
+k_values = [1, 2, 3, 4, 5];
+k = k_values(randi(length(k_values))); % Random value for rate constant k from {1,2,3,4,5} (mol/L)^(1-n) s^-1
+n_values = [1, 2];
+n = n_values(randi(length(n_values))); % Random value for reaction order n from {1,2}
+v0 = 2; % Constant flow rate in L/s
+
+% Calculate the concentration of A at the inlet and outlet
+C_A0 = F_A0 / v0; % Inlet concentration in mol/L
+C_A = F_A / v0; % Outlet concentration in mol/L
+
+% Calculate the volume of the CSTR
+if n == 1
+    % First-order reaction: V = (F_A0 - F_A) / (k * C_A)
+    V = (F_A0 - F_A) / (k * C_A);
+elseif n == 2
+    % Second-order reaction: V = (F_A0 - F_A) / (k * C_A^2)
+    V = (F_A0 - F_A) / (k * C_A^2);
+end
+
+
+
+
+% Function to verify student input
+function verify_student_input(student_volume)
+    % Randomly generated values
+    F_A0 = 5 + (10-5) * rand();
+    F_A = 1 + (4-1) * rand();
+    k_values = [1, 2, 3, 4, 5];
+    k = k_values(randi(length(k_values)));
+    n_values = [1, 2];
+    n = n_values(randi(length(n_values)));
+    v0 = 2;
+
+    % Calculate the concentration of A at the inlet and outlet
+    C_A0 = F_A0 / v0;
+    C_A = F_A / v0;
+
+    % Calculate the volume of the CSTR
+    if n == 1
+        V_correct = (F_A0 - F_A) / (k * C_A);
+    elseif n == 2
+        V_correct = (F_A0 - F_A) / (k * C_A^2);
+    end
+
+    % Compare student answer to correct volume
+    if abs(student_volume - V_correct) < 1e-2
+        fprintf('Student answer for CSTR volume is correct.\n');
+    else
+        fprintf('Student answer for CSTR volume is incorrect. Correct value is %.4f L\n', V_correct);
+    end
+end
