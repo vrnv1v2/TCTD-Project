@@ -1,3 +1,7 @@
+
+DataSet Generation
+
+
 % Generate random values
 input_N2_values = [3, 4, 5]; % Set {3,4,5} moles
 removed_N2_values = [0.5, 1, 1.5]; % Set {0.5,1,1.5} moles
@@ -9,12 +13,21 @@ removed_N2 = removed_N2_values(randi(length(removed_N2_values))); % Random remov
 consumed_N2 = consumed_N2_values(randi(length(consumed_N2_values))); % Random consumed N2
 generated_N2 = generated_N2_values(randi(length(generated_N2_values))); % Random generated N2
 
+
+
+
+Calculation performed by Student to arrive at answer
+
+
+
 % Perform mass balance calculations
 initial_N2 = input_N2;
 final_N2 = initial_N2 - removed_N2 - consumed_N2 + generated_N2;
 
 
 
+
+Function to check if student is correct or not to given tolerance
 
 % Function to verify student input
 function verify_student_input(student_final_N2)
