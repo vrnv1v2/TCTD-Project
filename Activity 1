@@ -1,0 +1,36 @@
+% Generate random values
+input_N2_values = [3, 4, 5]; % Set {3,4,5} moles
+removed_N2_values = [0.5, 1, 1.5]; % Set {0.5,1,1.5} moles
+consumed_N2_values = [1, 2]; % Set {1,2} moles
+generated_N2_values = [1, 2, 3]; % Set {1,2,3} moles
+
+input_N2 = input_N2_values(randi(length(input_N2_values))); % Random input N2
+removed_N2 = removed_N2_values(randi(length(removed_N2_values))); % Random removed N2
+consumed_N2 = consumed_N2_values(randi(length(consumed_N2_values))); % Random consumed N2
+generated_N2 = generated_N2_values(randi(length(generated_N2_values))); % Random generated N2
+
+% Perform mass balance calculations
+initial_N2 = input_N2;
+final_N2 = initial_N2 - removed_N2 - consumed_N2 + generated_N2;
+
+
+
+
+% Function to verify student input
+function verify_student_input(student_final_N2)
+   
+
+    input_N2 = input_N2_values(randi(length(input_N2_values)));
+    removed_N2 = removed_N2_values(randi(length(removed_N2_values)));
+    consumed_N2 = consumed_N2_values(randi(length(consumed_N2_values)));
+    generated_N2 = generated_N2_values(randi(length(generated_N2_values)));
+
+    initial_N2 = input_N2;
+    final_N2_correct = initial_N2 - removed_N2 - consumed_N2 + generated_N2;
+
+    if abs(student_final_N2 - final_N2_correct) < 1e-2
+        fprintf('Student answer for final N2 is correct.\n');
+    else
+        fprintf('Student answer for final N2 is incorrect. Correct value is %.1f moles\n', final_N2_correct);
+    end
+end
