@@ -1,4 +1,4 @@
-% Generate random values
+% Generate random values input
 C_A0 = 5 + (10-5) * rand(); % Random value for Ca0 between [5,10] mol/L
 k_values = [1, 2, 3, 4, 5];
 k = k_values(randi(length(k_values))); % Random value for rate constant k from {1,2,3,4,5} (mol/L)^(1-n) s^-1
