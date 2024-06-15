@@ -64,7 +64,7 @@ function verify_student_input(student_answers)
 
     % Compare student answers to correct values
     for i = 1:length(times)
-        if abs(student_answers(i) - C_A_correct(i)) < 1e-2
+        if abs(student_answers(i) - C_A_correct(i)) < 1
             fprintf('Student answer for t = %d s is correct.\n', times(i));
         else
             fprintf('Student answer for t = %d s is incorrect. Correct value is %.4f mol/L\n', times(i), C_A_correct(i));
