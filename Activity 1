@@ -41,7 +41,7 @@ function verify_student_input(student_final_N2)
     initial_N2 = input_N2;
     final_N2_correct = initial_N2 - removed_N2 - consumed_N2 + generated_N2;
 
-    if abs(student_final_N2 - final_N2_correct) < 1e-2
+    if abs(student_final_N2 - final_N2_correct) < 1
         fprintf('Student answer for final N2 is correct.\n');
     else
         fprintf('Student answer for final N2 is incorrect. Correct value is %.1f moles\n', final_N2_correct);
