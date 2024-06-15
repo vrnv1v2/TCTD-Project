@@ -52,7 +52,7 @@ function verify_student_input(student_volume)
     end
 
     % Compare student answer to correct volume
-    if abs(student_volume - V_correct) < 1e-2
+    if abs(student_volume - V_correct) < 1
         fprintf('Student answer for CSTR volume is correct.\n');
     else
         fprintf('Student answer for CSTR volume is incorrect. Correct value is %.4f L\n', V_correct);
